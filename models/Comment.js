@@ -23,7 +23,7 @@ Comment.init(
             defaultValue: DataTypes.NOW,
         },
         user_id: {
-            type: INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'user',
                 key: 'id'
@@ -47,4 +47,4 @@ Comment.init(
     }
 )
 
-module.exports = Blogpost;
+module.exports = Comment;
