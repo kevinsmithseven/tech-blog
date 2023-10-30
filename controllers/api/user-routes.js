@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User } = require('../../models');
 
 // CREATE new user // TODO should this be pointing to '/login'?
-router.post('/', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const dbUserData = await User.create({
             user_name: req.body.user_name,
@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
         if (!dbUserData) {
             res
                 .status(400)
-                .json({ message: 'Incorrect email or password. Please try again!' });
+                .json({ message: 'Incorrect username or password. Please try again!' });
             return;
         }
 
@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
         if (!validPassword) {
             res
                 .status(400)
-                .json({ message: 'Incorrect email or password. Please try again!' });
+                .json({ message: 'Incorrect username or password. Please try again!' });
             return;
         }
 

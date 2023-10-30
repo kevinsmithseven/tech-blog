@@ -11,7 +11,11 @@ const blogpostData = [
     content: 'This is the content of the second blog post.',
     user_id: 2, 
   },
-  
+  {
+    title: 'Third Blog Post',
+    content: 'This is the content of the third blog post.',
+    user_id: 1, 
+  },
 ];
 
 const seedBlogposts = () => Blogpost.bulkCreate(blogpostData);
