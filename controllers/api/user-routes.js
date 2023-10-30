@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-// CREATE new user // TODO should this be pointing to '/login'?
+// CREATE new user 
 router.post('/login', async (req, res) => {
     try {
         const dbUserData = await User.create({
