@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blogpost } = require('./models');
+const { Blogpost } = require('../models');
 
 // GET all blogposts for homepage
 router.get('/', async (req, res) => {
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 
         res.render('homepage', {
             blogposts,
-            loggedIn: req.session.loggedIn,
+            // loggedIn: req.session.loggedIn,
         });
     } catch (err) {
         console.log(err);
