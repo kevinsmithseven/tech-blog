@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 
         res.render('homepage', {
             blogposts,
-            loggedIn: true,// req.session.loggedIn,
+            loggedIn: req.session.loggedIn,
         });
     } catch (err) {
         console.log(err);
@@ -29,21 +29,25 @@ router.get('/', async (req, res) => {
 
 
 // TODO GET blogpost by ID
-router.get('/posts/:id', async (req, res) => {
+router.get('/singlepost/:id', async (req, res) => {
     try {
-        res.render("singlepost",{
-            blogpost: {
-                title: "this is title",
-                User: {
-                    user_name:"bob123",
-                    created_at: new Date()
-                },
-                content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam sed sunt earum quae alias. Quae ipsa exercitationem quibusdam magnam maxime, quis officiis praesentium sequi officia iure ea? Pariatur, excepturi enim."
-            }
-        })
+        const blogPostData = await Blogpost.findByPk(req.params.id, {
+            include: [
+                {
+                    model: User,
+                    attributes: ['user_name'],
+                }
+            ]
+        });
 
+        const blogpost = blogPostData.get({ plain: true });
+
+        res.render('singlepost', {
+            ...blogpost,
+            logged_in: req.session.logged_in,
+        });
     } catch (err) {
-        
+        res.status(500).json(err);
     }
 })
 

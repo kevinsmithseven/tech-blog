@@ -1,12 +1,12 @@
 {{#each blogposts as |blogpost| }}
-<div class="row mb-4 project">
-    <div class="col-md-5">
+<div class="card-body">
+    <div class="card-header flex-row justify-space-between">
         <h2>
-            <a href="/blogpost/{{blogpost.id}}">{{blogpost.title}}</a>
+            <a href="/singlepost/{{blogpost.id}}">{{blogpost.title}}</a>
         </h2>
-        <p>{{blogpost.content}}</p>
+        <p class="card-text">{{blogpost.content}}</p>
     </div>
-    <div class="col-md-7">
+    <div class="card-text">
         <p>Posted by {{user.user_name}} on {{format_date blogpost.created_at}}</p>
     </div>
 </div>
