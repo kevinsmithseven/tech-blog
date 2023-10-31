@@ -1,14 +1,13 @@
+{{log this}}
 <div class="card">
-  
   <div class="card-body">
     <div class="card-header flex-row justify-space-between">
-        <h2>{{blogpost.title}}</h2>
-        <div>
-            Posted by {{blogpost.User.user_name}} on {{format_date blogpost.created_at}}
-        </div>
+      <h2>{{title}}</h2>
+      <div>
+        Posted by {{user.user_name}} on {{format_date created_at}}
+      </div>
     </div>
-    <p class="card-text">{{blogpost.content}}</p>
+    <p class="card-text">{{content}}</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
-    
   </div>
 </div>

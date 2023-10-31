@@ -53,6 +53,32 @@ router.get('/singlepost/:id', async (req, res) => {
 
 // TODO GET dashboard that displays users posts
 
+router.get('/dashboard', async (req, res) => {
+    try {
+      // Find the logged in user based on the session ID
+      const postData = await Blogpost.findAll({
+        where: {
+            user_id: req.session.user_id
+        },
+        include: [
+            {
+                model: User,
+                attributes: ['user_name'],
+            }
+        ]
+      });
+  
+      const userPosts = postData.map((posts) => posts.get({ plain: true }));
+  
+      res.render('dashboard', {
+        ...userPosts,
+        logged_in: req.session.logged_in,
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
 
 // TODO GET login route
 router.get('/login', (req, res) => {
