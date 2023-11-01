@@ -55,41 +55,47 @@ router.get('/singlepost/:id', async (req, res) => {
 
 router.get('/dashboard', async (req, res) => {
     try {
-      // Find the logged in user based on the session ID
-      const postData = await Blogpost.findAll({
-        where: {
-            user_id: req.session.user_id
-        },
-        include: [
-            {
-                model: User,
-                attributes: ['user_name'],
-            }
-        ]
-      });
-  
-      const userPosts = postData.map((posts) => posts.get({ plain: true }));
-  
-      res.render('dashboard', {
-        ...userPosts,
-        logged_in: req.session.logged_in,
-      });
+        // Find the logged in user based on the session ID
+        const postData = await Blogpost.findAll({
+            where: {
+                user_id: req.session.user_id
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['user_name'],
+                }
+            ]
+        });
+
+        const userPosts = postData.map((posts) => posts.get({ plain: true }));
+        console.log(userPosts);
+        res.render('dashboard', {
+            userPosts,
+            logged_in: req.session.loggedIn,
+        });
     } catch (err) {
-      res.status(500).json(err);
+        res.status(500).json(err);
     }
-  });
+});
 
 
-// TODO GET login route
+// Login route
 router.get('/login', (req, res) => {
     // If the user is already logged in, redirect the request to another route
-    if (req.session.logged_in) {
-      res.redirect('/dashboard');
-      return;
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
     }
-  
+
     res.render('login');
-  });
+});
+
+// Signup route
+router.get('/signup', (req, res) => {
+    res.render('signup');
+});
+
 
 
 
