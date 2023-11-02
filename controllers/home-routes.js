@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Blogpost, User } = require('../models');
+const withAuth = require('../utils/auth');
 
 // GET all blogposts for homepage
 router.get('/', async (req, res) => {
@@ -29,7 +30,7 @@ router.get('/', async (req, res) => {
 
 
 // TODO GET blogpost by ID
-router.get('/singlepost/:id', async (req, res) => {
+router.get('/singlepost/:id', withAuth, async (req, res) => {
     try {
         const blogPostData = await Blogpost.findByPk(req.params.id, {
             include: [
@@ -53,7 +54,7 @@ router.get('/singlepost/:id', async (req, res) => {
 
 // TODO GET dashboard that displays users posts
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     try {
         // Find the logged in user based on the session ID
         const postData = await Blogpost.findAll({

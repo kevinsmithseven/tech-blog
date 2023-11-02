@@ -46,8 +46,8 @@
     font-size: 1.3rem;
     text-decoration:none;
     padding: 6px 5px;
-    width: 100%;
-    display: block;
+    width: 30%;
+    display: inline-block;
     margin: 5px 0;
     border-radius: var(--border-radius);
     color: var(--primary);
@@ -155,7 +155,7 @@
   .card-header {
     color: var(--primary);
     background-color: var(--dark);
-    padding: 2.5%;
+    padding: 1%;
     border-radius: calc(.18rem - 1px) calc(.18rem - 1px) 0 0;
   }
   
