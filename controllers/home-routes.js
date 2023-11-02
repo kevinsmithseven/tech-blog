@@ -80,6 +80,28 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }
 });
 
+router.get('/editpost/:id', withAuth, async (req, res) => {
+    try {
+        const blogPostData = await Blogpost.findByPk(req.params.id, {
+            include: [
+                {
+                    model: User,
+                    attributes: ['user_name'],
+                }
+            ]
+        });
+
+        const blogpost = blogPostData.get({ plain: true });
+
+        res.render('editpost', {
+            ...blogpost,
+            logged_in: req.session.logged_in,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
 
 // Login route
 router.get('/login', (req, res) => {
