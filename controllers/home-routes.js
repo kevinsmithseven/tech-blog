@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blogpost, User } = require('../models');
+const { Blogpost, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 // GET all blogposts for homepage
@@ -37,6 +37,15 @@ router.get('/singlepost/:id', withAuth, async (req, res) => {
                 {
                     model: User,
                     attributes: ['user_name'],
+                },
+                {
+                    model: Comment,
+                    include: [
+                        {
+                            model: User,
+                            attributes: ['user_name'],
+                        }
+                    ]
                 }
             ]
         });

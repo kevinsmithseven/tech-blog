@@ -17,6 +17,8 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+
+
 // Update a blogpost
 router.put('/:id', withAuth, async (req, res) => {
   try {

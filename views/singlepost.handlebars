@@ -8,6 +8,29 @@
       </div>
     </div>
     <p class="card-text">{{content}}</p>
-    <a href="#" class="btn btn-primary">Add a Comment</a>
-  </div>
+    </div>
 </div>
+
+<div class="comments-section">
+  {{#each comments as |comment|}}
+    <div class="comment">
+      <p class="card-text">{{comment.content}}</p>
+      <p>By {{comment.user.user_name}} on {{format_date comment.created_at}}</p>
+    </div>
+  {{/each}}
+</div>
+
+<h3>Add a Comment:</h3>
+    <form data-id="{{id}}" class="form new-comment-form">
+      <div class="form-group">
+      <div class="form-group">
+        <label for="comment-content">Content:</label>
+        <textarea class="form-input" id="comment-content" name="content"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add to Blogpost</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="/js/comment.js"></script>
