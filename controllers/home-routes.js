@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 });
 
 
-// TODO GET blogpost by ID
+//  GET blogpost by ID
 router.get('/singlepost/:id', withAuth, async (req, res) => {
     try {
         const blogPostData = await Blogpost.findByPk(req.params.id, {
@@ -61,7 +61,7 @@ router.get('/singlepost/:id', withAuth, async (req, res) => {
     }
 })
 
-// TODO GET dashboard that displays users posts
+// GET dashboard that displays users posts
 
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
